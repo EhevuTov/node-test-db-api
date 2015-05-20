@@ -1,0 +1,29 @@
+{
+  "name": "node-test-db-api",
+  "version": "1.0.0",
+  "description": "a test of database data with a web api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:EhevuTov/node-test-db-api.git"
+  },
+  "keywords": [
+    "test",
+    "database",
+    "web",
+    "api"
+  ],
+  "author": "James Gosnell",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/EhevuTov/node-test-db-api/issues"
+  },
+  "homepage": "https://github.com/EhevuTov/node-test-db-api",
+  "dependencies": {
+    "sqlite-to-json": "^0.1.2",
+    "sqlite3": "^3.0.8"
+  }
+}
