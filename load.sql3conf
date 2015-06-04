@@ -1,0 +1,6 @@
+DROP table cdr;
+.stats on
+.trace stdout
+.mode csv
+.import test/data.csv cdr
+.quit

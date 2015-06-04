@@ -1,7 +1,7 @@
 const SqliteToJson = require('sqlite-to-json');
 const sqlite3 = require('sqlite3');
 const db = new SqliteToJson({
-	  //client: new sqlite3.Database(__dirname+'/../db/mydb.sqlite3')
+	  //client: new sqlite3.Database(__dirname+'/../db/cdr.sqlite3')
 	client: new sqlite3.Database(":memory:")
 });
 db.tables(function (err, tables) {
