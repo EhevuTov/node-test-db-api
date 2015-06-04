@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/EhevuTov/node-test-db-api",
   "dependencies": {
-    "sqlite-to-json": "^0.1.2",
     "sqlite3": "^3.0.8"
   }
 }
