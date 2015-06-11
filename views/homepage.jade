@@ -3,6 +3,9 @@ html(lang="en")
 	head
 		meta(charset="utf-8")
 		title= title
-		link(rel='stylesheet', href='/styles/homepage.css')
+		link(rel='stylesheet', href='styles/homepage.css')
+		script(src='js/dependencies/third-party/dojo/dojo.js', data-dojo-config="parseOnLoad: true, async: true")
+		script(src='js/homepage.js')
 	body(class='claro')
 		h1 Hello, World!
+		#preLoader(data-dojo-id='preLoader')
