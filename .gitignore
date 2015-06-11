@@ -1,4 +1,7 @@
+tmp/
+.tmp/
 *.swp
 *.log
 node_modules/
 db/*
+assets/js/dependencies/
