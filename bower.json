@@ -24,6 +24,8 @@
     "tests"
   ],
   "dependencies": {
-    "dgrid": "~0.4.0"
+    "dgrid": "~0.4.0",
+    "dijit": "~1.10.4",
+    "dojox": "~1.10.4"
   }
 }
