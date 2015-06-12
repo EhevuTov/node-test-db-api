@@ -1,6 +1,7 @@
+@import "http://ajax.googleapis.com/ajax/libs/dojo/1.10.0/dojo/resources/dojo.css";
 @import "http://ajax.googleapis.com/ajax/libs/dojo/1.10.0/dijit/themes/claro/claro.css";
-@import "http://ajax.googleapis.com/ajax/libs/dojo/1.10.0/dojox/grid/resources/Grid.css";
-@import "http://ajax.googleapis.com/ajax/libs/dojo/1.10.0/dojox/grid/resources/claroGrid.css";
+@import "/js/dependencies/third-party/dgrid/css/dgrid.css";
+@import "/js/dependencies/third-party/dgrid/css/skins/claro.css";
 
 html,body {
   width: 100%;
