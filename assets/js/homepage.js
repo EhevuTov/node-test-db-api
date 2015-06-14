@@ -1,22 +1,26 @@
 require([
-		"dojo/dom"
-	, "dojo/dom-style"
-	, "dojo/_base/declare"
-	, "dojo/_base/fx"
-	, 'dstore/RequestMemory'
-	, 'dgrid/OnDemandGrid'
-	, 'dgrid/Keyboard'
-	, 'dgrid/Selection'
-	, 'dgrid/Editor'
-	, 'dijit/form/TextBox'
-	, "dijit/layout/BorderContainer"
-	, "dijit/layout/ContentPane"
-	, "dijit/layout/TabContainer"
-	,	'dojo/parser'
-	, "dojo/domReady!"]
-	, ready ); // the callback function to run when done asynchronously
+	"dojo/dom",
+	"dojo/dom-style",
+ 	"dojo/_base/declare",
+	"dojo/_base/fx",
+	'dstore/Rest',
+	'dstore/RequestMemory',
+	'dstore/SimpleQuery',
+	'dstore/Cache',
+	'dstore/Trackable',
+	'dgrid/OnDemandGrid',
+	'dgrid/Keyboard',
+	'dgrid/Selection',
+	'dgrid/Editor',
+	'dijit/form/TextBox',
+	"dijit/layout/BorderContainer",
+	"dijit/layout/ContentPane",
+	"dijit/layout/TabContainer",
+	'dojo/parser',
+	"dojo/domReady!"],
+	ready ); // the callback function to run when done asynchronously
 
-function ready(dom,style,declare,fx,RequestMemory,Grid,Keyboard,Selection,Editor) {
+function ready(dom,style,declare,fx,Rest,RequestMemory,SimpleQuery,Cache,Trackable,Grid,Keyboard,Selection,Editor) {
 	// init needed to begin program after successful loading
 	// run loading icon for start of program
 	var n = dom.byId("preLoader");
@@ -28,17 +32,22 @@ function ready(dom,style,declare,fx,RequestMemory,Grid,Keyboard,Selection,Editor
 		}
 	}).play();
 
+	// build async RESTful grid
 	var columnHeaders = {
-		UnitID: {label: 'UnitID', sortable: true, editor: 'text', editOn:'click'},
-		Disposition: {label: 'Disposition', sortable: true, editor: 'text', editOn:'click'},
-		OPC: {label: 'OPC', sortable: true, editor: 'text', editOn:'click'},
-		TCIC: {label: 'TCIC', sortable: true, editor: 'text', editOn:'click'},
-		DPC: {label: 'DPC', sortable: true, editor: 'text', editOn:'click'},
-		LinkSet: {label: 'LinkSet', sortable: true, editor: 'text', editOn:'click'}
+		UnitID: {label: 'UnitID', sortable: true, editor: 'text', editOn:'click', autoSave:true},
+		Disposition: {label: 'Disposition', sortable: true, editor: 'text', editOn:'click', autoSave:true},
+		OPC: {label: 'OPC', sortable: true, editor: 'text', editOn:'click', autoSave:true},
+		TCIC: {label: 'TCIC', sortable: true, editor: 'text', editOn:'click', autoSave:true},
+		DPC: {label: 'DPC', sortable: true, editor: 'text', editOn:'click', autoSave:true},
+		LinkSet: {label: 'LinkSet', sortable: true, editor: 'text', editOn:'click', autoSave:true}
 	};
 
+	var RestMem = declare([Rest, RequestMemory, SimpleQuery, Cache, Trackable]);
+
 	var editGrid = new (declare([ Grid, Keyboard, Selection, Editor ]))({
-		collection: new RequestMemory({ target:'/cdr' }),
+		collection: new RestMem({ target:'/cdr/' }),
 		columns: columnHeaders,
+		loadingMessage: 'Loading data...',
+		noDataMessage: 'No results found.'
 	}, 'createRecord');
 }
