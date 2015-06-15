@@ -1,6 +1,7 @@
 require([
 	"dojo/dom",
 	"dojo/dom-style",
+	"dojo/has",
  	"dojo/_base/declare",
 	"dojo/_base/fx",
 	'dstore/Rest',
@@ -20,7 +21,7 @@ require([
 	"dojo/domReady!"],
 	ready ); // the callback function to run when done asynchronously
 
-function ready(dom,style,declare,fx,Rest,RequestMemory,SimpleQuery,Cache,Trackable,Grid,Keyboard,Selection,Editor) {
+function ready(dom,style,has,declare,fx,Rest,RequestMemory,SimpleQuery,Cache,Trackable,Grid,Keyboard,Selection,Editor) {
 	// init needed to begin program after successful loading
 	// run loading icon for start of program
 	var n = dom.byId("preLoader");
@@ -34,12 +35,12 @@ function ready(dom,style,declare,fx,Rest,RequestMemory,SimpleQuery,Cache,Trackab
 
 	// build async RESTful grid
 	var columnHeaders = {
-		UnitID: {label: 'UnitID', sortable: true, editor: 'text', editOn:'click', autoSave:true},
-		Disposition: {label: 'Disposition', sortable: true, editor: 'text', editOn:'click', autoSave:true},
-		OPC: {label: 'OPC', sortable: true, editor: 'text', editOn:'click', autoSave:true},
-		TCIC: {label: 'TCIC', sortable: true, editor: 'text', editOn:'click', autoSave:true},
-		DPC: {label: 'DPC', sortable: true, editor: 'text', editOn:'click', autoSave:true},
-		LinkSet: {label: 'LinkSet', sortable: true, editor: 'text', editOn:'click', autoSave:true}
+		UnitID: {label: 'UnitID', sortable: true, editor: 'text', editOn:(has('touch')?'click':'dblclick'), autoSave:true},
+		Disposition: {label: 'Disposition', sortable: true, editor: 'text', editOn:(has('touch')?'click':'dblclick'), autoSave:true},
+		OPC: {label: 'OPC', sortable: true, editor: 'text', editOn:(has('touch')?'click':'dblclick'), autoSave:true},
+		TCIC: {label: 'TCIC', sortable: true, editor: 'text', editOn:(has('touch')?'click':'dblclick'), autoSave:true},
+		DPC: {label: 'DPC', sortable: true, editor: 'text', editOn:(has('touch')?'click':'dblclick'), autoSave:true},
+		LinkSet: {label: 'LinkSet', sortable: true, editor: 'text', editOn:(has('touch')?'click':'dblclick'), autoSave:true}
 	};
 
 	var RestMem = declare([Rest, RequestMemory, SimpleQuery, Cache, Trackable]);
