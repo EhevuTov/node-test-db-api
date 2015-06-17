@@ -13,6 +13,8 @@ require([
 	'dgrid/Keyboard',
 	'dgrid/Selection',
 	'dgrid/Editor',
+	'dgrid/ColumnSet',
+	'dgrid/extensions/ColumnResizer',
 	'dijit/form/TextBox',
 	"dijit/layout/BorderContainer",
 	"dijit/layout/ContentPane",
@@ -21,7 +23,7 @@ require([
 	"dojo/domReady!"],
 	ready ); // the callback function to run when done asynchronously
 
-function ready(dom,style,has,declare,fx,Rest,RequestMemory,SimpleQuery,Cache,Trackable,Grid,Keyboard,Selection,Editor) {
+function ready(dom,style,has,declare,fx,Rest,RequestMemory,SimpleQuery,Cache,Trackable,Grid,Keyboard,Selection,Editor,ColumnSet, ColumnResizer) {
 	// init needed to begin program after successful loading
 	// run loading icon for start of program
 	var n = dom.byId("preLoader");
@@ -34,21 +36,32 @@ function ready(dom,style,has,declare,fx,Rest,RequestMemory,SimpleQuery,Cache,Tra
 	}).play();
 
 	// build async RESTful grid
-	var columnHeaders = {
-		UnitID: {label: 'UnitID', sortable: true, editor: 'text', editOn:(has('touch')?'click':'dblclick'), autoSave:true},
-		Disposition: {label: 'Disposition', sortable: true, editor: 'text', editOn:(has('touch')?'click':'dblclick'), autoSave:true},
-		OPC: {label: 'OPC', sortable: true, editor: 'text', editOn:(has('touch')?'click':'dblclick'), autoSave:true},
-		TCIC: {label: 'TCIC', sortable: true, editor: 'text', editOn:(has('touch')?'click':'dblclick'), autoSave:true},
-		DPC: {label: 'DPC', sortable: true, editor: 'text', editOn:(has('touch')?'click':'dblclick'), autoSave:true},
-		LinkSet: {label: 'LinkSet', sortable: true, editor: 'text', editOn:(has('touch')?'click':'dblclick'), autoSave:true}
-	};
+	var columnSet = [
+		[
+		[
+		{field: 'UnitID', label: 'UnitID', sortable: true, editor: 'text', editOn:(has('touch')?'click':'dblclick'), autoSave:true},
+		{field: 'Disposition', label: 'Disposition', sortable: true, editor: 'text', editOn:(has('touch')?'click':'dblclick'), autoSave:true}
+	]],
+		[[
+		{field: 'OPC', label: 'OPC', sortable: true, editor: 'text', editOn:(has('touch')?'click':'dblclick'), autoSave:true},
+		{field: 'TCIC', label: 'TCIC', sortable: true, editor: 'text', editOn:(has('touch')?'click':'dblclick'), autoSave:true},
+		{field: 'DPC', label: 'DPC', sortable: true, editor: 'text', editOn:(has('touch')?'click':'dblclick'), autoSave:true},
+		{field: 'CdPA',label: 'CdPA', sortable: true, editor: 'text', editOn:(has('touch')?'click':'dblclick'), autoSave:true},
+		{field: 'CgPA',label: 'CgPA', sortable: true, editor: 'text', editOn:(has('touch')?'click':'dblclick'), autoSave:true},
+		{field: 'OpCode', label: 'Op Code', sortable: true, editor: 'text', editOn:(has('touch')?'click':'dblclick'), autoSave:true},
+		{field: 'TranslationType', label: 'Xlation', sortable: true, editor: 'text', editOn:(has('touch')?'click':'dblclick'), autoSave:true},
+		{field: 'LinkSet', label: 'Link Set', sortable: true, editor: 'text', editOn:(has('touch')?'click':'dblclick'), autoSave:true}
+		]
+		]
+	];
+
 
 	var RestMem = declare([Rest, RequestMemory, SimpleQuery, Cache, Trackable]);
 
-	var editGrid = new (declare([ Grid, Keyboard, Selection, Editor ]))({
+	var editGrid = new (declare([ Grid, ColumnSet, Keyboard, Selection, Editor, ColumnResizer ]))({
 		collection: new RestMem({ target:'/cdr/' }),
-		columns: columnHeaders,
-		loadingMessage: 'Loading data...',
-		noDataMessage: 'No results found.'
-	}, 'createRecord');
+			columnSets: columnSet,
+			loadingMessage: 'Loading data...',
+			noDataMessage: 'No results found.'
+	}, 'showRecords');
 }

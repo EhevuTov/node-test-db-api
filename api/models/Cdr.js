@@ -21,12 +21,28 @@ module.exports = {
 			type: "string",
 			required: true
 		},
+		DPC:{
+			type: "string",
+			required: true
+		},
 		TCIC:{
 			type: "integer",
 			required: true
 		},
-		DPC:{
-			type: "string",
+		CdPA:{
+			type: "integer",
+			required: true
+		},
+		CgPA:{
+			type: "integer",
+			required: true
+		},
+		OpCode:{
+			type: "integer",
+			required: true
+		},
+		TranslationType:{
+			type: "integer",
 			required: true
 		},
 		LinkSet:{

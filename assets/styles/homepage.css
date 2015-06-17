@@ -1,5 +1,5 @@
-@import "http://ajax.googleapis.com/ajax/libs/dojo/1.10.0/dojo/resources/dojo.css";
-@import "http://ajax.googleapis.com/ajax/libs/dojo/1.10.0/dijit/themes/claro/claro.css";
+@import "/js/dependencies/third-party/dojo/resources/dojo.css";
+@import "/js/dependencies/third-party/dijit/themes/claro/claro.css";
 @import "/js/dependencies/third-party/dgrid/css/dgrid.css";
 @import "/js/dependencies/third-party/dgrid/css/skins/claro.css";
 
@@ -37,10 +37,12 @@ div.container {
   margin: 0px;
 }
 
+/*
 div.header {
   border-width: 0px;
   text-align:right;
 }
+	*/
 
 div.links left{
   text-align:left;
@@ -63,11 +65,54 @@ a {
   color: #666666;
 }
 
-#grid {
-width: 98%;
-height: 98%;
+#showRecords {
+	width: 98%;
+	height: 98%;
+}
+/*
+.showRecords {
+	width: 700px;
+	margin: 10px;
+}
+*/
+
+/* Default all cells to 80px width */
+.showRecords .dgrid-cell {
+	width: 110px;
 }
 
+/* Make the columns for first/last name wider */
+/*
+.showRecords .field-UnitID,
+.showRecords .field-Disposition {
+	width: 20px;
+}
+*/
+.showRecords .field-UnitID {
+	width: 50px;
+}
+
+.showRecords .field-Disposition{
+	width: 65px;
+}
+
+*     For the column set example, make each column set occupy
+*         half the total grid width.
+*         */
+.showRecords .dgrid-column-set-cell {
+	width: 100px;
+}
+
+/* width of the first set */
+.showRecords .dgrid-column-set-0 {
+	width: 22%;
+}
+
+.showRecords .dgrid-column-set-1 {
+	width: 78%;
+}
+
+/*
 button {
 -webkit-transition: background-color 0.2s linear;
 border-radius:4px;
@@ -86,10 +131,11 @@ button:hover {
 background-color: #AFD9FF;
 color: #000000;
 }
+*/
 
 #preLoader {
     width:100%; height:100%; margin:0; padding:0;
     position:absolute; top:0; left:0;
-    background:#fff url('http://www.broadwaybalancesamerica.com/images/ajax-loader.gif') no-repeat center center;
+    background:#fff url('/images/loader.gif') no-repeat center center;
     z-index:999;
 }
